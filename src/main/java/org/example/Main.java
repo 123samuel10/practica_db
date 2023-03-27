@@ -22,7 +22,7 @@ public class Main {
         productoUpdate.setNombre("cambio de nombre UPDATE");
         productoRepository.update(productoUpdate);
         //eliminar----------
-        Producto productoEliminar=productoRepository.getById(6L);
+        Producto productoEliminar=productoRepository.getById(7L);
         productoRepository.delateById(productoEliminar.getId());
     }
 }

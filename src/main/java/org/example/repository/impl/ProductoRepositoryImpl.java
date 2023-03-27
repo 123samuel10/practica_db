@@ -80,12 +80,11 @@ public class ProductoRepositoryImpl implements Repository<Producto> {
 
     @Override
     public void delateById(Long id) {
-        try(PreparedStatement preparedStatement=getConnection().prepareStatement("""
-DELETE from Producto where id=?
-""")){
-
-
-
+        Producto producto=null;
+        try (PreparedStatement preparedStatement=getConnection().prepareStatement("DELETE FROM  Producto WHERE id=?")){
+            preparedStatement.setLong(1,id);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
