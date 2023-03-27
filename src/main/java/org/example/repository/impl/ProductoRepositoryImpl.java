@@ -51,7 +51,7 @@ public class ProductoRepositoryImpl implements Repository<Producto> {
                 .prepareStatement(" SELECT  * FROM  Producto where id=?")
         ) {
             preparedStatement.setLong(1,id);
-            ResultSet resultSet=preparedStatement.getResultSet();
+            ResultSet resultSet=preparedStatement.executeQuery();
             if (resultSet.next()){
                 producto=createProduct(resultSet);
             }
@@ -63,11 +63,49 @@ public class ProductoRepositoryImpl implements Repository<Producto> {
 
     @Override
     public void save(Producto producto) {
+        try (PreparedStatement preparedStatement=getConnection().prepareStatement("""
+                          INSERT INTO  Producto(nombre,precio,fecha_registro)values (?,?,?)
+""")){
+            preparedStatement.setString(1,producto.getNombre());
+            preparedStatement.setDouble(2,producto.getPrecio());
+            Date fechaResgitro= Date.valueOf(producto.getFechaRegistro());
+            preparedStatement.setDate(3,fechaResgitro);
+            preparedStatement.executeUpdate();
 
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void delateById(Long id) {
+        try(PreparedStatement preparedStatement=getConnection().prepareStatement("""
+DELETE from Producto where id=?
+""")){
+
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @Override
+    public void update(Producto producto) {
+        try(PreparedStatement preparedStatement=getConnection().prepareStatement("""
+UPDATE Producto SET  nombre=?,precio=?,fecha_registro=? WHERE id=?
+""")){
+            preparedStatement.setString(1,producto.getNombre());
+            preparedStatement.setDouble(2,producto.getPrecio());
+            Date fechaResgitro= Date.valueOf(producto.getFechaRegistro());
+            preparedStatement.setDate(3,fechaResgitro);
+            preparedStatement.setLong(4,producto.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

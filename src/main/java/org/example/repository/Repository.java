@@ -7,6 +7,7 @@ public interface Repository <T>{
     T getById(Long id);
     void save(T t);
     void  delateById(Long id);
+    void update(T t);
 
 
 }
