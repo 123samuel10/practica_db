@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.entities.Producto;
+import org.example.model.Producto;
 import org.example.repository.impl.ProductoRepositoryImpl;
 
 import java.time.LocalDate;

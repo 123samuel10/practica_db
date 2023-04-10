@@ -1,6 +1,6 @@
 package org.example.repository.impl;
 
-import org.example.entities.Producto;
+import org.example.model.Producto;
 import org.example.repository.Repository;
 import org.example.singleton.ConexionDB;
 
