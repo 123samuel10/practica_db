@@ -9,6 +9,8 @@ public class ConexionDB {
     private static String user = "root";
     private static String password = "admin";
     private static Connection connection;
+
+
     public static Connection getInstance() throws SQLException {
         if(connection==null){
             connection = DriverManager.getConnection(url,user,password);

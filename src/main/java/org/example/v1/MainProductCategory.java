@@ -14,9 +14,9 @@ public class MainProductCategory {
         //agregamos
         ProductoCategoryRepositoryImpl productoCategoryRepository=new ProductoCategoryRepositoryImpl();
         ProductCategory producto1=new ProductCategory();
-        Category category=new Category("pera",1);
+        Category category=new Category("manzana",1);
         producto1.setCategory(category);
-        producto1.setNombre("fresa");
+        producto1.setNombre("platano");
         producto1.setPrecio(2000.0);
         producto1.setFechaRegistro(LocalDate.now());
         productoCategoryRepository.save(producto1);
@@ -24,12 +24,11 @@ public class MainProductCategory {
         //modificar
         producto1.setNombre("cambio de nombre(banana)");
         ProductCategory productoUpdate=productoCategoryRepository.getById(3L);
-        productoUpdate.setNombre("cambio de nombre UPDATE");
+        productoUpdate.setNombre("UPDATE");
         productoCategoryRepository.update(productoUpdate);
         //---------------------------------------------
         //eliminar
-        ProductCategory productoEliminar=productoCategoryRepository.getById(1L);
-        productoCategoryRepository.delateById(productoEliminar.getId());
+
 
     }
 }
